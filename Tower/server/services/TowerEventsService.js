@@ -9,7 +9,7 @@ class TowerEventsService {
     }
 
     async getTowerEvent(id) {
-        const Event = await dbContext.TowerEvents.findById(id)
+        const Event = await dbContext.TowerEvents.findById(id).populate('creator')
         if (!Event) {
             throw new BadRequest('not the right event')
 
@@ -28,7 +28,7 @@ class TowerEventsService {
         if (original.creatorId.toString() != eventData.creatorId) {
             throw new BadRequest('Not your Event')
         }
-        if (original.isCanceled = true) {
+        if (original.isCanceled) {
             throw new BadRequest('Event Cancelled')
         }
         original.name = eventData.name ? eventData.name : original.name
@@ -53,7 +53,7 @@ class TowerEventsService {
 
     async delete(id, userId) {
         const event = await dbContext.TowerEvents.findById(id)
-        if (event.creatorId.toString() != event.userId) {
+        if (event.creatorId.toString() != userId) {
             throw new BadRequest('Not your Event to Delete')
         }
         await event.remove()

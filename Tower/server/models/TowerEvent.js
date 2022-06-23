@@ -4,7 +4,6 @@ const ObjectId = Schema.Types.ObjectId
 
 
 export const TowerEventSchema = new Schema({
-    // id: { type: String },
     creatorId: { type: ObjectId, required: true, ref: 'Account' },
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -17,11 +16,9 @@ export const TowerEventSchema = new Schema({
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
-
 TowerEventSchema.virtual('creator', {
     localField: 'creatorId',
-    ref: 'Account',
-    foreignField: ' _id',
-    justOne: true
+    foreignField: '_id',
+    justOne: true,
+    ref: 'Account'
 })
-
