@@ -1,11 +1,13 @@
 import { dbContext } from "../db/DbContext"
+import { BadRequest } from "../utils/Errors"
 
 
 class CommentsService {
 
-    async getEventComments(eventId, userId) {
-        // const event = await towerEventsService.getTowerEvent(eventId)
-        const comments = await dbContext.Comments.find({ eventId }).populate('event')
+    async getEventComments(eventId) {
+        const comments = await dbContext.Comments.find({ eventId })
+            .populate('event')
+            .populate('creator')
         return comments
     }
     async create(body) {
@@ -13,6 +15,15 @@ class CommentsService {
         await comment.populate('creator', 'name picture')
 
         return comment
+    }
+
+    async deleteComment(id, userId) {
+        const comment = await dbContext.Comments.findById(id)
+        if (comment.creatorId.toString() != userId) {
+            throw new BadRequest('Not your Comment to Delete')
+        }
+        await comment.remove()
+        return 'Comment Deleted'
     }
 
 }

@@ -1,15 +1,36 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
-  <main>
-    <router-view />
-  </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+
+
+  <div class="d-flex bg-dark">
+
+    <div class="col-10">
+      <div class="col-12 m-3">
+
+
+        <router-link :to="{ name: 'Home' }" class=" text-success lighten-30 selectable text-uppercase">
+          <h1>Tower</h1>
+        </router-link>
+
+
+      </div>
+
     </div>
-  </footer>
+
+    <div class="col-2 mt-3">
+      <div class="col-12 text-center">
+        <Login />
+        <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          About
+        </router-link>
+      </div>
+    </div>
+  </div>
+  <router-view />
+
+
+
+
+
 </template>
 
 <script>
@@ -26,5 +47,4 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
 </style>
