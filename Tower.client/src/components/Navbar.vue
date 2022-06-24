@@ -1,9 +1,7 @@
 <template>
 
   <Login />
-  <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-    About
-  </router-link>
+
 </template>
 
 <script>

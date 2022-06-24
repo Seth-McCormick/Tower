@@ -1,47 +1,54 @@
 <template>
   <span class="navbar-text">
-    <button
-      class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
-      @click="login"
-      v-if="!user.isAuthenticated"
-    >
+    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+      v-if="!user.isAuthenticated">
       Login
     </button>
 
     <div class="dropdown my-2 my-lg-0" v-else>
-      <div
-        class="dropdown-toggle selectable"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        id="authDropdown"
-      >
+      <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
         <div v-if="account.picture">
-          <img
-            :src="account.picture"
-            alt="account photo"
-            height="40"
-            class="rounded"
-          />
-          <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
-        </div>
-      </div>
-      <div
-        class="dropdown-menu p-0 list-group w-100"
-        aria-labelledby="authDropdown"
-      >
-        <router-link :to="{ name: 'Account' }">
-          <div class="list-group-item list-group-item-action hoverable">
-            Manage Account
+          <img :src="account.picture" alt="account photo" height="100" class="rounded m-3" />
+          <div>
+            <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
           </div>
-        </router-link>
-        <div
-          class="list-group-item list-group-item-action hoverable text-danger"
-          @click="logout"
-        >
-          <i class="mdi mdi-logout"></i>
-          logout
         </div>
       </div>
+      <router-link :to="{ name: 'Home' }" class=" text-success lighten-30 selectable">
+        <div class="mt-3">
+          Home
+        </div>
+      </router-link>
+      <router-link :to="{ name: 'Account' }" class=" text-success lighten-30 selectable mt-3">
+        <div class="mt-3">
+          Account
+        </div>
+      </router-link>
+
+      <div class="btn border bg-success rounded mt-3" data-bs-toggle="modal" data-bs-target="#modelId">
+        Create Event
+      </div>
+      <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark">Create Event</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <CreateEvent />
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="btn border bg-danger rounded mt-3" @click="logout">
+        <i class="mdi mdi-logout"></i>
+        logout
+      </div>
+
     </div>
   </span>
 </template>
@@ -62,6 +69,9 @@ export default {
       async logout() {
         AuthService.logout({ returnTo: window.location.origin });
       },
+      async createEvent() {
+
+      }
     };
   },
 };
@@ -75,9 +85,11 @@ export default {
   transform: scale(0);
   transition: all 0.15s linear;
 }
+
 .dropdown-menu.show {
   transform: scale(1);
 }
+
 .hoverable {
   cursor: pointer;
 }

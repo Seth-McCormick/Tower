@@ -7,21 +7,22 @@
       <div class="col-12 m-3">
 
 
-        <router-link :to="{ name: 'Home' }" class=" text-success lighten-30 selectable text-uppercase">
+        <div class=" text-success lighten-30  text-uppercase">
           <h1>Tower</h1>
-        </router-link>
+        </div>
+
 
 
       </div>
 
     </div>
 
-    <div class="col-2 mt-3">
+    <div class="col-2  mt-3">
       <div class="col-12 text-center">
         <Login />
-        <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-          About
-        </router-link>
+        <!-- <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable mt-3">
+          Home
+        </router-link> -->
       </div>
     </div>
   </div>
