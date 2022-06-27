@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="col-md-12 bg-secondary">
                         <!-- NOTE get all of my tickets for my event, v-for over them here. remember to add a title attribute with their name -->
-                        <img :src="attendee.creator.picture" alt="">
+                        <img :src="attendee?.creator.picture" alt="">
                     </div>
                 </div>
             </div>
@@ -42,11 +42,11 @@
             <div class="col-md-10 my-5">
                 What are people Saying
                 <div class="col-md-12 bg-secondary p-3">
-                    <form action="">
+                    <form action="" @submit.prevent="createComment">
                         <textarea class="form-control" placeholder="Add a Comment..." v-model="commentData.body" name=""
                             id="" cols="30" rows="5"></textarea>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-success m-2" @click="createComment">Post</button>
+                            <button class="btn btn-success m-2">Post</button>
                         </div>
                     </form>
 

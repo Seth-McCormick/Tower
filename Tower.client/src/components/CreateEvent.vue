@@ -14,9 +14,8 @@
 
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
-
-import { router } from '../router'
 import { eventsService } from '../services/EventsService'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
@@ -24,15 +23,16 @@ import Pop from '../utils/Pop'
 export default {
     setup() {
         const eventData = ref({})
+        const router = useRouter()
         return {
             router,
             eventData,
             async createEvent() {
                 try {
                     // return the res.data out of this method so that we have an id to use for our router push, alias it out so we can use it
-                    newEvent = AppState.events
+                    // newEvent = AppState.events
                     const event = await eventsService.createEvent(eventData.value)
-                    router.push(`/events/${event.id}`)
+                    router.push({ to: 'EventDetails', params: { id: event.id } })
                     // router.push them to the page that they need to go to
                 } catch (error) {
                     logger.log(error)
