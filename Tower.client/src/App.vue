@@ -1,32 +1,28 @@
 <template>
 
 
-  <div class="d-flex bg-dark">
-
-    <div class="col-10">
-      <div class="col-12 m-3">
 
 
-        <div class=" text-success lighten-30  text-uppercase">
-          <h1>Tower</h1>
-        </div>
-
-
-
-      </div>
-
-    </div>
-
-    <div class="col-2  mt-3">
-      <div class="col-12 text-center">
-        <Login />
-        <!-- <router-link :to="{ name: 'Home' }" class="btn text-success lighten-30 selectable mt-3">
-          Home
-        </router-link> -->
+  <div class="col-12 d-flex bg-dark">
+    <div class="col-12 mt-2 ps-2">
+      <div class=" text-success lighten-30  text-uppercase">
+        <h1>Tower</h1>
       </div>
     </div>
   </div>
-  <router-view />
+
+  <div class="d-flex justify-content-end ">
+    <div class="col-md-10 m-0">
+      <router-view />
+    </div>
+    <div class="col-2 d-flex bg-dark">
+      <div class="col-12 text-center">
+        <Login class="login-data" />
+
+      </div>
+    </div>
+  </div>
+
 
 
 

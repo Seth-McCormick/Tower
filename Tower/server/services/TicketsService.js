@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext"
-import { BadRequest } from "../utils/Errors"
+import { BadRequest, Forbidden } from "../utils/Errors"
 
 class TicketsService {
 
@@ -25,7 +25,10 @@ class TicketsService {
         if (event.isCanceled) {
             throw new BadRequest('Event is Cancelled')
         }
-
+        if (event.capacity <= 0) {
+            throw new Forbidden('Event Sold Out')
+        }
+        // NOTE check to see if the event has capacity left as well
         const ticket = await dbContext.Tickets.create(ticketData)
 
         //NOTE don't forget to await and save since its affecting the server. 

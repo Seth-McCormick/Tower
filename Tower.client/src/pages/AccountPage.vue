@@ -1,9 +1,5 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div>
+
 </template>
 
 <script>
@@ -12,15 +8,14 @@ import { AppState } from '../AppState'
 export default {
   name: 'Account',
   setup() {
+    // have an onmounted/watcheffect that goes and gets all of my events/tickets
     return {
       account: computed(() => AppState.account)
+
     }
   }
 }
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
-}
 </style>

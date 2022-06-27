@@ -25,9 +25,14 @@
         </div>
       </router-link>
 
-      <div class="btn border bg-success rounded mt-3" data-bs-toggle="modal" data-bs-target="#modelId">
-        Create Event
+      <div>
+
+        <div class="btn border bg-success rounded mt-3" data-bs-toggle="modal" data-bs-target="#modelId">
+          Create Event
+        </div>
       </div>
+
+
       <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -44,7 +49,7 @@
         </div>
       </div>
 
-      <div class="btn border bg-danger rounded mt-3" @click="logout">
+      <div class="btn border bg-danger rounded my-3" @click="logout">
         <i class="mdi mdi-logout"></i>
         logout
       </div>

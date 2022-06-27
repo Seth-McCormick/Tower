@@ -10,7 +10,8 @@ export const TowerEventSchema = new Schema({
     coverImg: { type: String, default: 'https://thiscatdoesnotexist.com' },
     location: { type: String, required: true },
     capacity: { type: Number, required: true },
-    startDate: { type: Date, required: true },
+    // NOTE put a min value on here with today's date (new Date())
+    startDate: { type: Date, required: true, min: (new Date()) },
     isCanceled: { type: Boolean, default: false },
     type: { type: String, enum: ['concert', 'convention', 'sport', 'digital'] }
 

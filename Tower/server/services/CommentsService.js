@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext"
-import { BadRequest } from "../utils/Errors"
+import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 class CommentsService {
@@ -20,7 +20,7 @@ class CommentsService {
     async deleteComment(id, userId) {
         const comment = await dbContext.Comments.findById(id)
         if (comment.creatorId.toString() != userId) {
-            throw new BadRequest('Not your Comment to Delete')
+            throw new Forbidden('Not your Comment to Delete')
         }
         await comment.remove()
         return 'Comment Deleted'
